@@ -20,7 +20,7 @@ protocol ChatInputAccessViewDelegate {
 
 
 /// Chat input accessory view
-class ChatInputAccessView: UIView {
+class ChatInputAccessView: UIVisualEffectView {
     
     /// Delegate
     var delegate: ChatInputAccessViewDelegate?
@@ -55,12 +55,12 @@ class ChatInputAccessView: UIView {
             update()
         }
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+  
+    override init(effect: UIVisualEffect?) {
+        super.init(effect: effect)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -95,10 +95,10 @@ class ChatInputAccessView: UIView {
         
         sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
         
-        addSubview(inputTextView)
-        addSubview(sendButton)
+        contentView.addSubview(inputTextView)
+        contentView.addSubview(sendButton)
         
-        self.addShadow()
+        contentView.addShadow()
         setLayout()
     }
     

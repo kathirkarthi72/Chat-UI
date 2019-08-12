@@ -20,8 +20,10 @@ class MessengerViewController: UICollectionViewController, UICollectionViewDeleg
     /// Input Container access view
     var inputAccessView: ChatInputAccessView = {
         
-        let accessView = ChatInputAccessView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: ContainerViewHeight.minimum.rawValue))
-        accessView.backgroundColor = MessengerColors.bgColor
+        let accessView = ChatInputAccessView(effect: UIBlurEffect(style: .light))
+
+//        let accessView = ChatInputAccessView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: ContainerViewHeight.minimum.rawValue))
+//        accessView.backgroundColor = MessengerColors.bgColor
         return accessView
     }()
     
@@ -63,14 +65,13 @@ class MessengerViewController: UICollectionViewController, UICollectionViewDeleg
     func collectionViewReload(showLastItem: Bool = false) {
         
         if showLastItem {
-            let index = viewModel.messages.lastItemIndex
             
-            collectionView.performBatchUpdates({
-                self.collectionView.insertItems(at: [index])
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
                 
-            }) { (isFinished) in
-                if isFinished {
-                    self.collectionView.scrollToItem(at: index, at: .bottom, animated: true)
+                if self.collectionView.numberOfItems(inSection: 0) > 5 {
+                    let index = IndexPath(item: self.collectionView.numberOfItems(inSection: 0) - 1, section: 0)
+                    self.collectionView.scrollToItem(at: index, at: .bottom, animated: false)
                 }
             }
         } else {
