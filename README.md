@@ -1,7 +1,7 @@
 # Chat UI_iOS
 A basic UI setup for Chat screen in swift
 
-![alt text](https://github.com/ktrkathir/Chat-UI/blob/master/Screen%20Shot%202019-02-20%20at%205.44.44%20PM.png)
+![alt text](https://github.com/ktrkathir/Chat-UI/blob/master/Simulator%20Screen%20Shot%20-%20iPhone7%20New%20-%202019-09-03%20at%2012.38.06.png)
 
 ## Setup instructions
 
