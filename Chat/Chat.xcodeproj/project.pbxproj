@@ -43,15 +43,24 @@
 		9FC1EA8D221D2DC400A83670 /* ViewExtens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA8C221D2DC400A83670 /* ViewExtens.swift */; };
 		9FC1EA8E221D2DC400A83670 /* ViewExtens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA8C221D2DC400A83670 /* ViewExtens.swift */; };
 		9FC1EA8F221D2DC400A83670 /* ViewExtens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA8C221D2DC400A83670 /* ViewExtens.swift */; };
-		9FC1EA91221D571900A83670 /* MessengerSenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA90221D571900A83670 /* MessengerSenderCell.swift */; };
-		9FC1EA92221D571900A83670 /* MessengerSenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA90221D571900A83670 /* MessengerSenderCell.swift */; };
-		9FC1EA93221D571900A83670 /* MessengerSenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA90221D571900A83670 /* MessengerSenderCell.swift */; };
-		9FC1EA95221D572300A83670 /* MessengerReceiverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA94221D572300A83670 /* MessengerReceiverCell.swift */; };
-		9FC1EA96221D572300A83670 /* MessengerReceiverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA94221D572300A83670 /* MessengerReceiverCell.swift */; };
-		9FC1EA97221D572300A83670 /* MessengerReceiverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA94221D572300A83670 /* MessengerReceiverCell.swift */; };
+		9FC1EA91221D571900A83670 /* TextSentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA90221D571900A83670 /* TextSentCell.swift */; };
+		9FC1EA92221D571900A83670 /* TextSentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA90221D571900A83670 /* TextSentCell.swift */; };
+		9FC1EA93221D571900A83670 /* TextSentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA90221D571900A83670 /* TextSentCell.swift */; };
+		9FC1EA95221D572300A83670 /* TextReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA94221D572300A83670 /* TextReceivedCell.swift */; };
+		9FC1EA96221D572300A83670 /* TextReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA94221D572300A83670 /* TextReceivedCell.swift */; };
+		9FC1EA97221D572300A83670 /* TextReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1EA94221D572300A83670 /* TextReceivedCell.swift */; };
 		9FCE386B2211AD37007DDEBF /* ChatTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE386A2211AD37007DDEBF /* ChatTextInputView.swift */; };
 		9FCE386C2211AD37007DDEBF /* ChatTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE386A2211AD37007DDEBF /* ChatTextInputView.swift */; };
 		9FCE386D2211AD37007DDEBF /* ChatTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE386A2211AD37007DDEBF /* ChatTextInputView.swift */; };
+		A1E27EB7231A65A300B181E7 /* CallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EB6231A65A300B181E7 /* CallCell.swift */; };
+		A1E27EBC231A70C200B181E7 /* MediaSentcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EBB231A70C200B181E7 /* MediaSentcell.swift */; };
+		A1E27EBE231A70CF00B181E7 /* MediaReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EBD231A70CF00B181E7 /* MediaReceivedCell.swift */; };
+		A1E479ED231E3740001CC2A2 /* MediaSentcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EBB231A70C200B181E7 /* MediaSentcell.swift */; };
+		A1E479EE231E3740001CC2A2 /* MediaSentcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EBB231A70C200B181E7 /* MediaSentcell.swift */; };
+		A1E479EF231E3742001CC2A2 /* MediaReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EBD231A70CF00B181E7 /* MediaReceivedCell.swift */; };
+		A1E479F0231E3743001CC2A2 /* MediaReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EBD231A70CF00B181E7 /* MediaReceivedCell.swift */; };
+		A1E479F1231E3967001CC2A2 /* CallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EB6231A65A300B181E7 /* CallCell.swift */; };
+		A1E479F2231E3968001CC2A2 /* CallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E27EB6231A65A300B181E7 /* CallCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,9 +103,12 @@
 		9F664C8B220C1C6200930582 /* MessengerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
 		9FAFB30722140EC700EB49FF /* ChatInputAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccessView.swift; sourceTree = "<group>"; };
 		9FC1EA8C221D2DC400A83670 /* ViewExtens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtens.swift; sourceTree = "<group>"; };
-		9FC1EA90221D571900A83670 /* MessengerSenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerSenderCell.swift; sourceTree = "<group>"; };
-		9FC1EA94221D572300A83670 /* MessengerReceiverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerReceiverCell.swift; sourceTree = "<group>"; };
+		9FC1EA90221D571900A83670 /* TextSentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSentCell.swift; sourceTree = "<group>"; };
+		9FC1EA94221D572300A83670 /* TextReceivedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextReceivedCell.swift; sourceTree = "<group>"; };
 		9FCE386A2211AD37007DDEBF /* ChatTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextInputView.swift; sourceTree = "<group>"; };
+		A1E27EB6231A65A300B181E7 /* CallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallCell.swift; sourceTree = "<group>"; };
+		A1E27EBB231A70C200B181E7 /* MediaSentcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSentcell.swift; sourceTree = "<group>"; };
+		A1E27EBD231A70CF00B181E7 /* MediaReceivedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReceivedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,11 +139,10 @@
 		9F221122221526C600356AF2 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				A1E27EB8231A708500B181E7 /* Cells */,
 				9F2211232215277400356AF2 /* MessengerConstants.swift */,
 				9F664C8B220C1C6200930582 /* MessengerViewController.swift */,
 				9F166D842212FC7B001B5D20 /* MessengerViewModel.swift */,
-				9FC1EA90221D571900A83670 /* MessengerSenderCell.swift */,
-				9FC1EA94221D572300A83670 /* MessengerReceiverCell.swift */,
 				9FCE386A2211AD37007DDEBF /* ChatTextInputView.swift */,
 				9F166D762212D898001B5D20 /* StringExtens.swift */,
 				9F22112722152BA500356AF2 /* CollectionViewExtens.swift */,
@@ -193,6 +204,42 @@
 				9F664C7F220C196A00930582 /* Info.plist */,
 			);
 			path = ChatUITests;
+			sourceTree = "<group>";
+		};
+		A1E27EB5231A659500B181E7 /* Call Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A1E27EB6231A65A300B181E7 /* CallCell.swift */,
+			);
+			path = "Call Cell";
+			sourceTree = "<group>";
+		};
+		A1E27EB8231A708500B181E7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A1E27EBA231A70A000B181E7 /* Media Cell */,
+				A1E27EB9231A709000B181E7 /* Text Cell */,
+				A1E27EB5231A659500B181E7 /* Call Cell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A1E27EB9231A709000B181E7 /* Text Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9FC1EA90221D571900A83670 /* TextSentCell.swift */,
+				9FC1EA94221D572300A83670 /* TextReceivedCell.swift */,
+			);
+			path = "Text Cell";
+			sourceTree = "<group>";
+		};
+		A1E27EBA231A70A000B181E7 /* Media Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A1E27EBB231A70C200B181E7 /* MediaSentcell.swift */,
+				A1E27EBD231A70CF00B181E7 /* MediaReceivedCell.swift */,
+			);
+			path = "Media Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,15 +374,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F664C63220C196400930582 /* Chat.xcdatamodeld in Sources */,
-				9FC1EA95221D572300A83670 /* MessengerReceiverCell.swift in Sources */,
+				9FC1EA95221D572300A83670 /* TextReceivedCell.swift in Sources */,
+				A1E27EBE231A70CF00B181E7 /* MediaReceivedCell.swift in Sources */,
 				9FCE386B2211AD37007DDEBF /* ChatTextInputView.swift in Sources */,
 				9F2211242215277400356AF2 /* MessengerConstants.swift in Sources */,
+				A1E27EB7231A65A300B181E7 /* CallCell.swift in Sources */,
 				9F664C5D220C196300930582 /* ViewController.swift in Sources */,
 				9F22112822152BA500356AF2 /* CollectionViewExtens.swift in Sources */,
 				9FAFB30822140EC700EB49FF /* ChatInputAccessView.swift in Sources */,
+				A1E27EBC231A70C200B181E7 /* MediaSentcell.swift in Sources */,
 				9F166D852212FC7B001B5D20 /* MessengerViewModel.swift in Sources */,
 				9F166D772212D898001B5D20 /* StringExtens.swift in Sources */,
-				9FC1EA91221D571900A83670 /* MessengerSenderCell.swift in Sources */,
+				9FC1EA91221D571900A83670 /* TextSentCell.swift in Sources */,
 				9F664C5B220C196300930582 /* AppDelegate.swift in Sources */,
 				9F166D792212D8C2001B5D20 /* Message.swift in Sources */,
 				9F664C8C220C1C6200930582 /* MessengerViewController.swift in Sources */,
@@ -348,15 +398,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F166D822212DA01001B5D20 /* AppDelegate.swift in Sources */,
-				9FC1EA96221D572300A83670 /* MessengerReceiverCell.swift in Sources */,
+				9FC1EA96221D572300A83670 /* TextReceivedCell.swift in Sources */,
 				9F166D7A2212D9ED001B5D20 /* StringExtens.swift in Sources */,
+				A1E479ED231E3740001CC2A2 /* MediaSentcell.swift in Sources */,
 				9F2211252215277400356AF2 /* MessengerConstants.swift in Sources */,
+				A1E479F1231E3967001CC2A2 /* CallCell.swift in Sources */,
 				9FCE386C2211AD37007DDEBF /* ChatTextInputView.swift in Sources */,
 				9F22112922152BA500356AF2 /* CollectionViewExtens.swift in Sources */,
 				9FAFB30922140EC700EB49FF /* ChatInputAccessView.swift in Sources */,
 				9F166D862212FC9C001B5D20 /* MessengerViewModel.swift in Sources */,
+				A1E479EF231E3742001CC2A2 /* MediaReceivedCell.swift in Sources */,
 				9F166D7C2212D9F1001B5D20 /* Message.swift in Sources */,
-				9FC1EA92221D571900A83670 /* MessengerSenderCell.swift in Sources */,
+				9FC1EA92221D571900A83670 /* TextSentCell.swift in Sources */,
 				9F664C73220C196A00930582 /* ChatTests.swift in Sources */,
 				9F166D802212D9FE001B5D20 /* ViewController.swift in Sources */,
 				9F166D7E2212D9FA001B5D20 /* MessengerViewController.swift in Sources */,
@@ -369,15 +422,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F166D832212DA01001B5D20 /* AppDelegate.swift in Sources */,
-				9FC1EA97221D572300A83670 /* MessengerReceiverCell.swift in Sources */,
+				9FC1EA97221D572300A83670 /* TextReceivedCell.swift in Sources */,
 				9F166D7B2212D9ED001B5D20 /* StringExtens.swift in Sources */,
+				A1E479EE231E3740001CC2A2 /* MediaSentcell.swift in Sources */,
 				9F2211262215277400356AF2 /* MessengerConstants.swift in Sources */,
+				A1E479F2231E3968001CC2A2 /* CallCell.swift in Sources */,
 				9FCE386D2211AD37007DDEBF /* ChatTextInputView.swift in Sources */,
 				9F22112A22152BA500356AF2 /* CollectionViewExtens.swift in Sources */,
 				9FAFB30A22140EC700EB49FF /* ChatInputAccessView.swift in Sources */,
 				9F166D872212FC9C001B5D20 /* MessengerViewModel.swift in Sources */,
+				A1E479F0231E3743001CC2A2 /* MediaReceivedCell.swift in Sources */,
 				9F166D7D2212D9F1001B5D20 /* Message.swift in Sources */,
-				9FC1EA93221D571900A83670 /* MessengerSenderCell.swift in Sources */,
+				9FC1EA93221D571900A83670 /* TextSentCell.swift in Sources */,
 				9F664C7E220C196A00930582 /* ChatUITests.swift in Sources */,
 				9F166D812212D9FE001B5D20 /* ViewController.swift in Sources */,
 				9F166D7F2212D9FA001B5D20 /* MessengerViewController.swift in Sources */,

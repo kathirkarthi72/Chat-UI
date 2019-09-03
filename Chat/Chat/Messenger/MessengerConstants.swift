@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 /// Messenger constant
 struct MessengerConstant {
     
@@ -34,10 +33,11 @@ struct MessengerConstant {
 /// - sender: sender
 /// - receiver: receiver
 enum MessengerCellID: String {
-    case sender = "MessengerSenderCell"
-    case receiver = "MessengerReceiverCell"
-    case typing = "MessengerTypingCell"
-
+    case sentText = "MessengerSenderCell"
+    case receiveText = "MessengerReceiverCell"
+    case sentMedia = "MessagerSendMediaCell"
+    case receiveMedia = "MessagerReceiveMediaCell"
+    case call = "MessengerCallCell"
 }
 
 /// Container view height
@@ -55,6 +55,6 @@ struct MessengerColors {
     static let bgColor = UIColor(red: 237.0/255.0, green: 238.0/255.0, blue: 239.0/255.0, alpha: 1.0)
     
     static let senderColor = UIColor(red: 238.0/255.0, green: 209.0/255.0, blue: 242.0/255.0, alpha: 1.0)
-
-    static let receiverColor = UIColor(red: 254.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    
+    static let receiverColor = UIColor(red: 255.0/255.0, green: 231.0/255.0, blue: 204.0/255.0, alpha: 1.0)
 }

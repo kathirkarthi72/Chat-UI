@@ -16,6 +16,8 @@ protocol ChatInputAccessViewDelegate {
     
     /// Send button clicked
     func sendButtonClicked(text: String)
+    
+    func attachbuttonClicked()
 }
 
 
@@ -33,11 +35,20 @@ class ChatInputAccessView: UIVisualEffectView {
         return textView
     }()
     
+    var attachButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isEnabled = true
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        button.setTitle("↑", for: .normal)
+        
+        return button
+    }()
+    
     /// Send button
     let sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.gray, for: .disabled)
-        button.setTitleColor(UIColor.blue, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         button.setTitle("Send", for: .normal)
@@ -65,18 +76,26 @@ class ChatInputAccessView: UIVisualEffectView {
         super.init(coder: aDecoder)
     }
     
+    var sendButtonWidthConstrains: NSLayoutConstraint!
+
     fileprivate func setLayout() {
         sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        sendButtonWidthConstrains = sendButton.widthAnchor.constraint(equalToConstant: 0)
+        sendButtonWidthConstrains.isActive = true
         sendButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
-        //   sendButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        attachButton.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -10).isActive = true
+        attachButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        attachButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        attachButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
         
         inputTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         inputTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         inputTextView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        inputTextView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -10).isActive = true
+        inputTextView.trailingAnchor.constraint(equalTo: attachButton.leadingAnchor, constant: -10).isActive = true
         inputTextView.layer.cornerRadius = 20
+        inputTextView.layer.masksToBounds = true
     }
     
     override func didMoveToWindow() {
@@ -94,8 +113,10 @@ class ChatInputAccessView: UIVisualEffectView {
         inputTextView.delegate = self
         
         sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
+        attachButton.addTarget(self, action: #selector(attachButtonClicked), for: .touchUpInside)
         
         contentView.addSubview(inputTextView)
+        contentView.addSubview(attachButton)
         contentView.addSubview(sendButton)
         
         contentView.addShadow()
@@ -125,9 +146,15 @@ class ChatInputAccessView: UIVisualEffectView {
         
         if inputText.isEmpty {
             sendButton.isEnabled = false
+            sendButtonWidthConstrains.constant = 0
+            layoutIfNeeded()
+
             inputTextView.enablesReturnKeyAutomatically = false
         } else {
             sendButton.isEnabled = true
+            sendButtonWidthConstrains.constant = 40
+            layoutIfNeeded()
+
             inputTextView.enablesReturnKeyAutomatically = true
         }
     }
@@ -135,11 +162,21 @@ class ChatInputAccessView: UIVisualEffectView {
     // MARK: - Button action
     @objc func sendButtonClicked() {
         
-        if let text = inputTextView.text, let delegate = delegate {
-            let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        sendButton.springAnimation {
+            if let text = self.inputTextView.text, let delegate = self.delegate {
+                let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 delegate.sendButtonClicked(text: trimmed)
+            }
         }
-       
+    }
+    
+    @objc func attachButtonClicked() {
+        
+        attachButton.springAnimation {
+            if let delegate = self.delegate {
+                delegate.attachbuttonClicked()
+            }
+        }
     }
 }
 

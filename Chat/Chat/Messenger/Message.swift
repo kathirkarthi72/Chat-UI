@@ -12,6 +12,8 @@ import UIKit
 enum MessageType: Int {
     case text = 1
     case image = 2
+    case video = 3
+    case call = 4
 }
 
 enum MessageReadState: Int {
@@ -23,29 +25,65 @@ enum MessageReadState: Int {
 
 /// Message
 struct Message {
-    
     /// Message type
-    var message_type: MessageType = MessageType.text
+    var type: MessageType = .text
     
-    var data: Any?
+    /// Text
+    var text: String = ""
     
-    var sender: String?
+    // Media file path
+    var mediaFilePath: URL?
+        
+    /// sender ID
+    var senderID: String?
     
+    /// Timestamp
     var timestamp: String?
     
-    var read_state: MessageReadState = MessageReadState.sent
+    /// Read state
+    var readState: MessageReadState = .sent
     
-    var height: CGFloat = 0
+    var height: CGFloat = 20
     
-    init(type: MessageType = MessageType.text, data: Any, from: String, timestamp: String, readState: MessageReadState = MessageReadState.sent) {
+    
+    init(text: String, sender: String, timestamp: String, readState: MessageReadState = .sent) {
         
-        self.message_type = type
-        self.data = data
-        self.sender = from
+        self.type = .text
+        self.text = text
+        self.senderID = sender
         self.timestamp = timestamp
-        self.read_state = readState
+        self.readState = readState
     }
     
+    init(call text: String, sender: String, timestamp: String) {
+        
+        self.type = .call
+        self.text = text
+        self.senderID = sender
+        self.timestamp = timestamp
+    }
+    
+    init(image mediaFilePath: URL, sender: String, timestamp: String, readState: MessageReadState = .sent) {
+        
+        self.type = .image
+        self.senderID = sender
+        self.timestamp = timestamp
+        self.readState = readState
+        self.mediaFilePath = mediaFilePath
+        
+        self.height = 180
+    }
+    
+    init(video mediaFilePath: URL, sender: String, timestamp: String, readState: MessageReadState = .sent) {
+        
+        self.type = .video
+        self.senderID = sender
+        self.timestamp = timestamp
+        self.readState = readState
+        self.mediaFilePath = mediaFilePath
+
+        self.height = 180
+    }
 }
 
 extension Array where Element == Message {
@@ -53,43 +91,4 @@ extension Array where Element == Message {
     var lastItemIndex: IndexPath {
         return IndexPath(item: self.count - 1, section: 0)
     }
-    
 }
-
-/*
- {
- "Taxiye": {
- "messages": {
- "D100|P100": {
- "D100_state": 0,
- "P100_state": 1,
- "P_unread": 0,
- "D_unread": 2,
- "chat1": {
- "message_type": 1,
- "data": "text",
- "sender": "D100",
- "timestamp": "10:05 PM",
- "read_state": 0
- },
- "chat2": {
- "message_type": 1,
- "data": "text",
- "sender": "D100",
- "timestamp": "10:10 PM",
- "read_state": 1
- },
- "chat3": {
- "message_type": 1,
- "data": "text",
- "sender": "P100",
- "timestamp": "10:15 PM",
- "read_state": 2
- }
- },
- "D101|P101": {}
- }
- }
- }
- 
- */

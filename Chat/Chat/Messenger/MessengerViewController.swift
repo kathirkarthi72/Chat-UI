@@ -21,9 +21,6 @@ class MessengerViewController: UICollectionViewController, UICollectionViewDeleg
     var inputAccessView: ChatInputAccessView = {
         
         let accessView = ChatInputAccessView(effect: UIBlurEffect(style: .light))
-
-//        let accessView = ChatInputAccessView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: ContainerViewHeight.minimum.rawValue))
-//        accessView.backgroundColor = MessengerColors.bgColor
         return accessView
     }()
     
@@ -44,8 +41,15 @@ class MessengerViewController: UICollectionViewController, UICollectionViewDeleg
         
         collectionView.backgroundColor = UIColor.clear
         collectionView.keyboardDismissMode = .interactive
-        collectionView.register(MessengerSenderCell.self, forCellWithReuseIdentifier: MessengerCellID.sender.rawValue)
-        collectionView.register(MessengerReceiverCell.self, forCellWithReuseIdentifier: MessengerCellID.receiver.rawValue)
+        collectionView.register(TextSentCell.self, forCellWithReuseIdentifier: MessengerCellID.sentText.rawValue)
+        collectionView.register(TextReceivedCell.self, forCellWithReuseIdentifier: MessengerCellID.receiveText.rawValue)
+        collectionView.register(MediaSentCell.self, forCellWithReuseIdentifier: MessengerCellID.sentMedia.rawValue)
+        collectionView.register(MediaReceivedCell.self, forCellWithReuseIdentifier: MessengerCellID.receiveMedia.rawValue)
+        collectionView.register(CallCell.self, forCellWithReuseIdentifier: MessengerCellID.call.rawValue)
+
+        let callBarButton = UIBarButtonItem(title: "📞", style: .done, target: self, action: #selector(callButtonClicked))
+        
+        self.navigationItem.setRightBarButton(callBarButton, animated: true)
     }
     
     override var canBecomeFirstResponder: Bool {
@@ -90,6 +94,21 @@ class MessengerViewController: UICollectionViewController, UICollectionViewDeleg
         }
     }
     
+    // MARK: Button action
+    @objc func callButtonClicked() {
+        presentAlertController(title: "Call", subTitle: nil, style: .actionSheet, options: ["Voice","Video"]) { (clickedOption) in
+            if clickedOption == "Voice" {
+                self.call(text: "Voice call placed")
+                self.collectionViewReload(showLastItem: true)
+
+            } else if clickedOption == "Video" {
+                self.call(text: "Video call placed")
+                self.collectionViewReload(showLastItem: true)
+
+            }
+        }
+    }
+    
     // MARK: Collectionview
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.messages.count
@@ -100,14 +119,54 @@ class MessengerViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: viewModel.messages[indexPath.item].height)
+//        return CGSize(width: view.bounds.width, height: viewModel.messages[indexPath.item].height)
+        let message = viewModel.messages[indexPath.item]
+        
+    switch message.type {
+        case .call:
+            return CGSize(width: view.bounds.width, height: 22)
+        default:
+            return CGSize(width: view.bounds.width, height: message.height)
+        }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let message = viewModel.messages[indexPath.item]
+        
+        switch message.type {
+   /*  case .image:
+            if let imageFilePath = message.mediaFilePath, let image = UIImage(contentsOfFile: imageFilePath) {
+                let previewVC = PreviewViewController()
+                previewVC.loadImage = image
+                
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(previewVC, animated: true)
+                }
+            }
+            */
+        case .video:
+            
+            if message.senderID == MessengerConstant.senderID {                
+                if let videoFilePath = message.mediaFilePath {
+                    self.playVideo(filePath: videoFilePath)
+                }
+                
+            } else {
+                if let videoFilePath = message.mediaFilePath {
+                    self.playVideo(filePath: videoFilePath)
+                }
+            }
+        default:
+            break
+        }
+    }
+    
     
 }
 
 // MARK: - ChatInputAccessViewDelegate
 extension MessengerViewController: ChatInputAccessViewDelegate {
-    
+   
     func textUpdated() {
         justScrollLastItemToTop()
     }
@@ -115,38 +174,9 @@ extension MessengerViewController: ChatInputAccessViewDelegate {
     func sendButtonClicked(text: String) {
         
         if viewModel.messages.count % 2  == 0 {
-                        
-            var msg = Message(data: text, from: MessengerConstant.senderID, timestamp: "10:30 AM")
-            
-            let space = self.view.bounds.width - 200
-            var height = text.height(withConstrainedWidth: space, font: UIFont.systemFont(ofSize: 14.0))
-            
-            if height <= 25 {
-                msg.height = 35
-            } else {
-                height += 10
-                msg.height = height
-            }
-            
-            // msg.height = viewModel.sizeForItem(message: text, preferredWidth: space).height
-            
-            viewModel.sendMessage(newElement: msg)
+            sent(text: text)
         } else {
-            
-            var msg = Message(data: text, from: MessengerConstant.receiverID, timestamp: "10:31 AM")
-            
-            let space = self.view.bounds.width - 190
-            
-            var height = text.height(withConstrainedWidth: space, font: UIFont.systemFont(ofSize: 14.0))
-            
-            if height <= 25 {
-                msg.height = 35
-            } else {
-                height += 10
-                msg.height = height
-            }
-            
-            viewModel.sendMessage(newElement: msg)
+            receive(text: text)
         }
         
         inputAccessView.inputText = ""
@@ -156,6 +186,16 @@ extension MessengerViewController: ChatInputAccessViewDelegate {
         }
         
         collectionViewReload(showLastItem: true)
+    }
+    
+    func attachbuttonClicked() {
+        presentAlertController(title: "Attach", subTitle: nil, style: .actionSheet, options: ["Shot","Gallery"]) { (clickedOption) in
+            if clickedOption == "Shot" {
+                self.presentCameraPicker()
+            } else if clickedOption == "Gallery" {
+                self.presentLibraryPicker()
+            }
+        }
     }
 }
 
